@@ -3,6 +3,7 @@
 #include <time.h>
 
 #define TAM_MAX 5
+#define TAM_SORT 70
 
 // Função pega da internet.
 int myRand(int low, int high) {
@@ -11,6 +12,7 @@ int myRand(int low, int high) {
    
 }
 // fim da internet
+
 
 // Função para validar se o numero existe na Array Multi, se existe ele retorna Bool e a posição por REF.
 bool inCartela(int array[TAM_MAX][TAM_MAX], int i, int *a, int *b) {
@@ -36,9 +38,9 @@ bool inCartela(int array[TAM_MAX][TAM_MAX], int i, int *a, int *b) {
 }
 
 // Função para validar se o numero existe na Array, se existe ele retorna Bool e a posição por REF.
-bool inBingo(int array[(TAM_MAX*TAM_MAX)], int i, int *a) {
+bool inBingo(int array[TAM_SORT], int i, int *a) {
 	
-	for (int x = 0; x < (TAM_MAX * TAM_MAX); x++) {
+	for (int x = 0; x < TAM_SORT; x++) {
 	
 			if (array[x] == i) {
 				
@@ -98,12 +100,13 @@ void exibeCartela(int cartela[TAM_MAX][TAM_MAX]) {
 }
 
 // Procedure para Popular a Array
-void popularBingo(int bingo[(TAM_MAX*TAM_MAX)]) {
+void popularBingo(int bingo[TAM_SORT]) {
 	
 	int tmpRand;
 	int a;
+	tmpRand = myRand(1, 99);
 	
-	for (int x = 0; x < (TAM_MAX * TAM_MAX); x++) {
+	for (int x = 0; x < TAM_SORT; x++) {
 	
 		while (inBingo(bingo, tmpRand, &a) == true) {
 			
@@ -119,7 +122,7 @@ void popularBingo(int bingo[(TAM_MAX*TAM_MAX)]) {
 }
 
 // Procedure para Comparar a Array Multi e Array normal, armazenando em outra Array Multi se existente
-void conferirJogo(int cartela[TAM_MAX][TAM_MAX], int bingo[(TAM_MAX*TAM_MAX)], bool sorteado[TAM_MAX][TAM_MAX]) {
+void conferirJogo(int cartela[TAM_MAX][TAM_MAX], int bingo[TAM_SORT], bool sorteado[TAM_MAX][TAM_MAX]) {
 	
 	int a;
 		
@@ -149,6 +152,7 @@ bool validarJogo(int cartela[TAM_MAX][TAM_MAX], bool sorteado[TAM_MAX][TAM_MAX])
 	int tmpX = 0;
 	int tmpY = 0;
 	int tmpQ = 0;
+	int tmpI;
 	
 	// Checa se foi BINGO (DUVIDO)
 	for (int x = 0; x < TAM_MAX; x++) {
@@ -163,13 +167,13 @@ bool validarJogo(int cartela[TAM_MAX][TAM_MAX], bool sorteado[TAM_MAX][TAM_MAX])
 		
 	}
 	
-	if (tmpX == 50) {
+	if (tmpX == 25) {
 		printf("BINGO! GANHOU!");
 		return true;
 	}
 	// Checa se foi BINGO (DUVIDO) /* FIM */
 	
-	//Checar Quinas - Vertical
+	//Checar Quinas - Horizontal
 	for (int x = 0; x < TAM_MAX; x++) {
 		
 		tmpY = 0;
@@ -179,15 +183,21 @@ bool validarJogo(int cartela[TAM_MAX][TAM_MAX], bool sorteado[TAM_MAX][TAM_MAX])
 				tmpY++;
 			}
 			
-		}
-		
-		if (tmpY == 5) {
-			tmpQ++;
+			if (tmpY == 5) {
+				printf("\n Quina Acertada (Horizontal): \n");
+			
+				for (int i = 0; i < TAM_MAX; i++) {
+					printf(" %d", cartela[x][i]);
+				}
+			
+				tmpQ++;
+			}
+			
 		}
 		
 	}
 	
-	//Checar Quinas - Horizontal
+	//Checar Quinas - Vertical
 	for (int x = 0; x < TAM_MAX; x++) {
 		
 		tmpX = 0;
@@ -197,10 +207,16 @@ bool validarJogo(int cartela[TAM_MAX][TAM_MAX], bool sorteado[TAM_MAX][TAM_MAX])
 				tmpX++;
 			}
 			
-		}
-		
-		if (tmpX == 5) {
-			tmpQ++;
+			if (tmpX == 5) {
+				printf("\n Quina Acertada (Vertical): \n");
+			
+				for (int i = 0; i < TAM_MAX; i++) {
+					printf(" %d\n", cartela[i][x]);
+				}
+			
+				tmpQ++;
+			}
+			
 		}
 		
 	}
@@ -216,26 +232,50 @@ bool validarJogo(int cartela[TAM_MAX][TAM_MAX], bool sorteado[TAM_MAX][TAM_MAX])
 		}
 		
 		if (tmpX == 5) {
-			tmpQ++;
-		}
+				printf("\n Quina Acertada (Diagonal): \n");
+
+				for (int i = 0; i < TAM_MAX; i++) {
+					
+					for (int x = 0; x < i; x++) {
+						printf("\t");
+					}
+					
+						printf(" %d\n", cartela[i][i]);
+					}
+				
+					tmpQ++;
+			}
+		
 		
 	tmpX = 0;
-		for (int y = 4; y >= 0; y--) {
-			
-			if (sorteado[y][y] == true) {
+		for (int y = 0; y < 5; y++) {
+			tmpI = (4 - y);
+			if (sorteado[y][tmpI] == true) {
 				tmpX++;
 			}
 			
 		}
 		
 		if (tmpX == 5) {
-			tmpQ++;
-		}
-		
+				printf("\n Quina Acertada (Diagonal): \n");
+
+				for (int i = 4; i >= 0; i--) {
+					
+					tmpI = (4 - i);
+					for (int x = 0; x < i; x++) {
+						printf("\t");
+					}
+					
+						printf(" %d\n", cartela[tmpI][i]);
+					}
+				
+					tmpQ++;
+			}
+	
 		
 	// Exibe winner
 	if (tmpQ > 0) {
-		printf("Voce acertou: %d, Quinas!", tmpQ);
+		printf("\n Voce acertou: %d, Quinas! \n", tmpQ);
 		return true;
 	}
 	
@@ -246,7 +286,7 @@ main () {
 	
 	srand(time(NULL));
 	int cartela[TAM_MAX][TAM_MAX];
-	int bingo[(TAM_MAX*TAM_MAX)];
+	int bingo[TAM_SORT];
 	bool sorteado[TAM_MAX][TAM_MAX];
 	bool ganhouAlgo;
 	
