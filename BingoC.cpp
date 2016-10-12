@@ -87,7 +87,7 @@ void exibeCartela(int cartela[TAM_MAX][TAM_MAX]) {
 		
 		for (int y = 0; y < TAM_MAX; y++) {
 		
-			printf("|%d", cartela[x][y]);
+			printf("\t%d", cartela[x][y]);
 		
 		}
 		
@@ -127,7 +127,7 @@ void conferirJogo(int cartela[TAM_MAX][TAM_MAX], int bingo[(TAM_MAX*TAM_MAX)], b
 		
 		for (int y = 0; y < TAM_MAX; y++) {
 			
-			printf("| %d", cartela[x][y]);
+			printf("\t%d", cartela[x][y]);
 			
 			if (inBingo(bingo, cartela[x][y], &a) == true) {
 				
@@ -258,7 +258,7 @@ main () {
 	system("PAUSE");
 	popularBingo(bingo);
 	printf("\n");
-	printf("\n Os numeros sorteados sao: \n");
+	printf("\n Os numeros sorteados sao (Marcados com *): \n");
 	conferirJogo(cartela, bingo, sorteado);
 	ganhouAlgo = validarJogo(cartela, sorteado);
 	printf("\n Agora vamos conferir! \n");
