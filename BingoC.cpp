@@ -237,12 +237,19 @@ main () {
 	bool sorteado[TAM_MAX][TAM_MAX];
 	bool ganhouAlgo;
 	
+	printf("\n Seja bem vindo! Vamos jogar bingo? retire sua cartela! \n");
 	popularCartela(cartela);
+	system("PAUSE");
+	printf("\n Observe os numeros da sua cartela! \n");
 	exibeCartela(cartela);
+	system("PAUSE");
 	popularBingo(bingo);
 	printf("\n");
+	printf("\n Os numeros sorteados sao: \n");
 	conferirJogo(cartela, bingo, sorteado);
 	ganhouAlgo = validarJogo(cartela, sorteado);
+	printf("\n Agora vamos conferir! \n");
+	system("PAUSE");
 	
 	if (ganhouAlgo) {
 		
