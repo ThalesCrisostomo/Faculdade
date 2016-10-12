@@ -219,6 +219,19 @@ bool validarJogo(int cartela[TAM_MAX][TAM_MAX], bool sorteado[TAM_MAX][TAM_MAX])
 			tmpQ++;
 		}
 		
+	tmpX = 0;
+		for (int y = 4; y >= 0; y--) {
+			
+			if (sorteado[y][y] == true) {
+				tmpX++;
+			}
+			
+		}
+		
+		if (tmpX == 5) {
+			tmpQ++;
+		}
+		
 		
 	// Exibe winner
 	if (tmpQ > 0) {
