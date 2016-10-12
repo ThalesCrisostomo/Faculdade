@@ -3,7 +3,7 @@
 #include <time.h>
 
 #define TAM_MAX 5
-#define TAM_SORT 70
+#define TAM_SORT 50
 
 // Função pega da internet.
 int myRand(int low, int high) {
