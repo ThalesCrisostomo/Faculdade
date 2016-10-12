@@ -53,7 +53,7 @@ bool inBingo(int array[(TAM_MAX*TAM_MAX)], int i, int *a) {
 	
 }
 
-// Função para Popular a Array Multi
+// Procedure para Popular a Array Multi
 void popularCartela(int cartela[TAM_MAX][TAM_MAX]) {
 	
 	int tmpRand;
@@ -80,7 +80,7 @@ void popularCartela(int cartela[TAM_MAX][TAM_MAX]) {
 	
 }
 
-// Função para Exibir a Array
+// Procedure para Exibir a Array
 void exibeCartela(int cartela[TAM_MAX][TAM_MAX]) {
 	
 	for (int x = 0; x < TAM_MAX; x++) {
@@ -97,7 +97,7 @@ void exibeCartela(int cartela[TAM_MAX][TAM_MAX]) {
 	
 }
 
-// Função para Popular a Array
+// Procedure para Popular a Array
 void popularBingo(int bingo[(TAM_MAX*TAM_MAX)]) {
 	
 	int tmpRand;
@@ -118,7 +118,7 @@ void popularBingo(int bingo[(TAM_MAX*TAM_MAX)]) {
 	
 }
 
-// Função para Comparar a Array Multi e Array normal, armazenando em outra Array Multi se existente
+// Procedure para Comparar a Array Multi e Array normal, armazenando em outra Array Multi se existente
 void conferirJogo(int cartela[TAM_MAX][TAM_MAX], int bingo[(TAM_MAX*TAM_MAX)], bool sorteado[TAM_MAX][TAM_MAX]) {
 	
 	int a;
