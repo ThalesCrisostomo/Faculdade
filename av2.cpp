@@ -93,7 +93,7 @@ main () {
 	printf("Atividade 4\n");
 	
 	if (found == 1) {
-		printf("Status: Encontrado, na posicao: %d\n\n", (mid+1)); // N„o sei se vai querer a pÛs do CHAR ou da vis„o da pessoa (+1)
+		printf("Status: Encontrado, na posicao: %d\n\n", (mid+1)); // N√£o sei se vai querer a p√≥s do CHAR ou da vis√£o da pessoa (+1)
 		
 		} else {
 		printf("Status: Nao Encontrado\n\n");
@@ -118,8 +118,10 @@ main () {
 	aluno.AV1 = 9.0;
 	
 	printf("Atividade 5\n");
-	printf("Nome: %s, RA: %s, AV1: %0.1f", aluno.Cnome, aluno.Cra, aluno.AV1);
+	printf("Nome: %s, RA: %s, AV1: %0.1f\n", aluno.Cnome, aluno.Cra, aluno.AV1);
 	
 	/* ATIV 5 */
+	
+	system("pause");
 	
 }
